@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+    body{
+        background-color: gray;
+        overflow: hidden;
+    }
+    .header{
+        transform: translate(500px, 100px); 
+        letter-spacing: 5px;
+        text-shadow: 2px 2px 2px rgb(190, 15, 15);
+        font-size: 50px;
+    }
+    .btn1{
+        height: 130px;
+        width: 130px ;
+        background-color: red;
+        float: left;
+        transform: translate(550px,150px);
+        box-shadow: 10px 20px 5px 3px black;
+        font-size: 30px;
+    }
+
+    .btn2{
+        height: 130px;
+        width: 130px ;
+        background-color: red;
+        float: left;
+        transform: translate(650px,90px);
+        box-shadow: 10px 20px 5px 3px black;
+        font-size: 30px;
+    }
+    .player1{
+        font-style: italic;
+        transform: translate(550px,130px);
+        font-size: 30px;
+        color: wheat;
+    }
+    .player2{
+        font-style: italic;
+        transform: translate(650px,70px);
+        font-size: 30px;
+        color: whitesmoke;
+    }
+    button:hover{
+        background-color: green;
+        cursor: pointer;
+    }
+   </style>
+</head>
+<body>
+   
+    <div>
+        
+        <h1 ><p class="header">Let's start game</p></h1>
+        
+        
+    </div>
+    <div>
+        <p class="player1">player-1</p>
+        <button class="btn1" onclick="number1()">
+            <p class ="p1">Spin the disc</p>
+        </button>
+    </div>
+    <div>
+        <p class="player2" >player-2</p>
+        <button class="btn2" onclick="number2()">
+            <p class ="p2"> spin the disc</p>
+        </button>
+    </div>
+    <script>
+        let header = document.getElementsByClassName("header");
+        let btn1 = document.getElementsByClassName("btn1");
+        let disc2 = document.getElementsByClassName("btn2");
+        let p1 = document.getElementsByClassName("p1");
+        let p2 = document.getElementsByClassName("p2");
+
+        let x = 0 , y = 0 ;
+        let turn1 = 0 , turn2 = 0 ; 
+        function number1(){
+            
+            if(turn1 == 0){
+
+                //Genration of random number
+                x = Math.floor(Math.random()*6+1);
+                turn1++ ;
+                p1[0].innerHTML = x ;
+                if(y == 0 && x > 0){
+                     header[0].innerHTML = " It's players-2 turn ";
+                }
+                else if(y == x){
+                    header[0].innerHTML = " The match is draw ";
+                }
+                else if( x > 0 && y > 0 ){
+                    if( x < y){
+                         header[0].innerHTML = " player-2 won the match" ;
+                         disc2.style.background = "yellow";
+                    }
+                    else{
+                         header[0].innerHTML = " player-1 won the match" ;
+                         btn1.style.background = "yellow";
+                    }
+                }
+            }
+
+            else{
+                header[0].innerHTML = " OOP'S its not your turn ";
+            }
+
+            if(turn1 == 1 && turn2 == 1){
+                
+                setTimeout( function (){
+                    location.reload(); },1500)
+
+                setTimeout(function (){
+                   alert('The game is completed');} , 1200);
+            }
+        }
+         
+        function number2(){
+        
+            if(turn2 == 0){
+                //Genration of random number
+                y = Math.floor(Math.random()*6+1);
+                 p2[0].innerHTML = y ;
+                 turn2++ ;
+                if(x == 0 && y > 0){
+                    header[0].innerHTML = " It's players-2 turn ";
+                } 
+                 else if(y == x){
+                     header[0].innerHTML = " The match is draw ";
+                }
+                else if( x > 0 && y > 0 ){
+                    if( x < y){
+                        header[0].innerHTML = " player-2 won the match" ;
+                        
+                    }
+                    else{
+                        header[0].innerHTML = " player-1 won the match" ;
+                       
+                    }
+                }
+            }
+           
+            else{
+                header[0].innerHTML = " OOP'S its not your turn ";
+            }
+
+            if(turn1 == 1 && turn2 == 1){
+
+                setTimeout(function (){
+                   alert('The game is completed');} , 1200);
+
+                setTimeout( function (){
+                    location.reload(); },1500)
+            }
+        }
+
+    
+    </script>
+</body>
+</html>
